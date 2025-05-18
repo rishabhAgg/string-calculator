@@ -14,5 +14,13 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add("1,2")).to eq(3)
         expect(StringCalculator.add("1,2,3")).to eq(6)
     end
+
+    it 'should handle unwanted comma placements' do
+        expect(StringCalculator.add("1,,2")).to eq(3)
+        expect(StringCalculator.add("1,2,")).to eq(3)
+        expect(StringCalculator.add(",1,2")).to eq(3)
+        expect(StringCalculator.add(",,1")).to eq(1)
+        expect(StringCalculator.add(",,")).to eq(0)
+    end
   end
 end
