@@ -22,5 +22,19 @@ RSpec.describe StringCalculator do
         expect(StringCalculator.add(",,1")).to eq(1)
         expect(StringCalculator.add(",,")).to eq(0)
     end
+
+    it 'should handle spaces around numbers' do
+        expect(StringCalculator.add("1, 2")).to eq(3)
+        expect(StringCalculator.add("1,2 ")).to eq(3)
+        expect(StringCalculator.add(" 1,2")).to eq(3)
+        expect(StringCalculator.add(" 1 , 2 ")).to eq(3)
+    end
+
+    it 'should handle new line characters' do
+        expect(StringCalculator.add("1\n2")).to eq(3)
+        expect(StringCalculator.add("1,2\n3")).to eq(6)
+        expect(StringCalculator.add("1\n2,3")).to eq(6)
+        expect(StringCalculator.add("1\n2\n3")).to eq(6)
+    end
   end
 end
